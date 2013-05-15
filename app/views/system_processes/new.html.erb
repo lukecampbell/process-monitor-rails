@@ -1,0 +1,15 @@
+<h1>SystemProcesses#new</h1>
+
+<%= form_for @proc do |f| %>
+  <%= f.label "PID" %>
+  <%= f.text_field :id, readonly: true %>
+
+  <p>
+
+  <%= f.label "Command" %>
+  <%= f.text_field :command, size: 120, readonly: true %>
+
+  <p>
+
+  <%= f.submit "Launch Monitor"%>
+<% end %>

@@ -1,0 +1,16 @@
+<h1> System Processes </h1>
+
+<table cellspacing="0">
+  <thead>
+    <th>Process ID</th>
+    <th>Command</th>
+  </thead>
+  <tbody>
+    <% @procs.each do |p| %>
+      <tr>
+        <td><%= link_to p[:pid], new_system_process_path(p)%></td>
+        <td><%= p[:comm] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
