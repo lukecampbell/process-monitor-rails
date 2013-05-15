@@ -13,6 +13,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'capybara'
   gem 'rspec-rails'
+  gem 'annotate'
 end
 
 
