@@ -1,10 +1,10 @@
 class SystemProcessesController < ApplicationController
   def index
-    @procs = `ps -ww -e -o pid=,comm=`.strip.split("\n").map do |x|
-      pid, comm = x.split()
+    @procs = `ps -ww -e -o pid=,command=`.strip.split("\n").map do |x|
+      args = x.split
       {
-        pid: pid.to_i,
-        comm: comm
+        pid: args[0].to_i,
+        comm: args[1,args.length].join(' ')
       }
     end
   end
@@ -14,7 +14,7 @@ class SystemProcessesController < ApplicationController
     comm = params[:comm]
     @proc = SystemProcess.new
     @proc.id = pid
-    @proc.command = comm
+    @proc.command = `ps -ww -p #{pid} -o command=`.strip
   end
 
   def show
@@ -28,7 +28,10 @@ class SystemProcessesController < ApplicationController
     @proc.id = pid
     @proc.command = comm
     if @proc.save
+      Resque.enqueue(MonitorWorker, @proc.id)
       redirect_to system_process_path pid
+    else
+      render :new
     end
   end
 end
