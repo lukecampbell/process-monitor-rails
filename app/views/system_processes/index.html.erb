@@ -3,12 +3,18 @@
 <table cellspacing="0">
   <thead>
     <th>Process ID</th>
+    <th>Monitored</th>
     <th>Command</th>
   </thead>
   <tbody>
     <% @procs.each do |p| %>
       <tr>
         <td><%= link_to p[:pid], new_system_process_path(p)%></td>
+        <td>
+          <% if p[:exists] %>
+            <%= link_to 'Monitor', system_process_path(p[:pid])%>
+          <% end %>
+        </td>
         <td><%= p[:comm] %></td>
       </tr>
     <% end %>

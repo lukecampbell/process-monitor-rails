@@ -31,6 +31,7 @@ end
 gem 'jquery-rails'
 
 gem 'resque', require: 'resque/server'
+gem 'foreman'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

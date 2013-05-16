@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130515014453) do
+ActiveRecord::Schema.define(:version => 20130516020051) do
 
   create_table "process_stats", :force => true do |t|
     t.integer  "system_process_id"
@@ -29,8 +29,10 @@ ActiveRecord::Schema.define(:version => 20130515014453) do
     t.string   "name"
     t.text     "command"
     t.string   "user"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "time_length"
+    t.integer  "interval"
   end
 
 end

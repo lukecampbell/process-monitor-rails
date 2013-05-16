@@ -1,2 +1,29 @@
-<h1>SystemProcesses#show</h1>
-<p>Find me in app/views/system_processes/show.html.erb</p>
+<h1>System Process <%= @proc.id %></h1>
+<div class='command'>
+  <%= @proc.command %>
+</div>
+<div class='reset'>
+  <%= link_to 'Reset', @proc, :method=>:delete %>
+</div>
+<% if @stats and @stats.length %>
+<table cellspacing="0" class="stats_table">
+  <thead>
+    <th>Time</th>
+    <th>RSS</th>
+    <th>%Mem</th>
+    <th>%CPU</th>
+  </thead>
+  <tbody>
+    <% @stats.each do |s| %>
+      <tr>
+        <td><%= s.created_at %></td>
+        <td><%= s.rss %></td>
+        <td><%= s.pmem %></td>
+        <td><%= s.pcpu %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <h3> No Stats Available at this time </h3>
+<% end %>

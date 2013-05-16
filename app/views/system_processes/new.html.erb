@@ -1,15 +1,19 @@
-<h1>SystemProcesses#new</h1>
+<h1><%= @proc.command.split()[0] %></h1>
 
+<h3>Start Process Monitor For <%= @proc.id %></h3>
+
+<div class='command'><%= @proc.command %></div>
 <%= form_for @proc do |f| %>
-  <%= f.label "PID" %>
-  <%= f.text_field :id, readonly: true %>
+  <%= f.hidden_field :id, value: @proc.id %>
+  <%= f.hidden_field :command, value: @proc.command %>
+
+  <%= f.label "Monitor Time (s)" %>
+  <%= f.text_field :time_length %>
 
   <p>
 
-  <%= f.label "Command" %>
-  <%= f.text_field :command, size: 120, readonly: true %>
-
-  <p>
+  <%= f.label "Polling interval (s)" %>
+  <%= f.text_field :interval %>
 
   <%= f.submit "Launch Monitor"%>
 <% end %>
