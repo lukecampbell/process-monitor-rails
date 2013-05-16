@@ -43,7 +43,7 @@ class SystemProcessesController < ApplicationController
 
   def destroy
     @proc = SystemProcess.find(params[:id])
-    if @proc.delete
+    if @proc.destroy
       redirect_to system_processes_path
     else
       render :new
