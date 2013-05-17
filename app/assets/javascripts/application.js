@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require raphael
+//= require morris
 //= require_tree .
 //
 $(document).ready( function() {
