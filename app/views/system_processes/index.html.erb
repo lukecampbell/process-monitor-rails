@@ -1,21 +1,16 @@
-<h1> System Processes </h1>
+<h1> Monitored Processes </h1>
 
-<table cellspacing="0">
+<table cellspacing="0" class="table table-hover table-striped list-table">
   <thead>
     <th>Process ID</th>
-    <th>Monitored</th>
     <th>Command</th>
   </thead>
   <tbody>
     <% @procs.each do |p| %>
-      <tr>
-        <td><%= link_to p[:pid], new_system_process_path(p)%></td>
-        <td>
-          <% if p[:exists] %>
-            <%= link_to 'Monitor', system_process_path(p[:pid])%>
-          <% end %>
-        </td>
-        <td><%= p[:comm] %></td>
+      <tr url="<%= url_for system_process_path(p) %>">
+        
+        <td><%= p.id %></td>
+        <td><%= p.command %></td>
       </tr>
     <% end %>
   </tbody>

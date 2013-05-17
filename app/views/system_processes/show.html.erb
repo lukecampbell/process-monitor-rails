@@ -1,12 +1,14 @@
-<h1>System Process <%= @proc.id %></h1>
-<div class='command'>
-  <%= @proc.command %>
+<div class="table-head">
+  <h1>System Process <%= @proc.id %></h1>
+  <div class='command'>
+    <%= @proc.command %>
+  </div>
 </div>
 <div class='reset'>
-  <%= link_to 'Reset', @proc, :method=>:delete %>
+  <%= link_to 'Reset', @proc, :method=>:delete, :class=>:btn %>
 </div>
 <% if @stats and @stats.length %>
-<table cellspacing="0" class="stats_table">
+<table cellspacing="0" class="table table-striped stats_table">
   <thead>
     <th>Time</th>
     <th>RSS</th>

@@ -1,5 +1,5 @@
 class SystemProcessesController < ApplicationController
-  def index
+  def list
     @procs = `ps -ww -e -o pid=,command=`.strip.split("\n").map do |x|
       args = x.split
       {
@@ -8,6 +8,11 @@ class SystemProcessesController < ApplicationController
         comm: args[1,args.length].join(' ')
       }
     end
+  end
+
+  
+  def index
+    @procs = SystemProcess.all
   end
 
   def new
@@ -43,10 +48,7 @@ class SystemProcessesController < ApplicationController
 
   def destroy
     @proc = SystemProcess.find(params[:id])
-    if @proc.destroy
-      redirect_to system_processes_path
-    else
-      render :new
-    end
+    @proc.destroy
+    redirect_to list_path
   end
 end

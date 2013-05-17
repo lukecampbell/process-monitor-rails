@@ -1,5 +1,6 @@
 ProcessMonitor::Application.routes.draw do
   resources :system_processes
+  match '/list' => 'system_processes#list', :as => :list
 
   mount Resque::Server, at: '/resque'
   # The priority is based upon order of creation:

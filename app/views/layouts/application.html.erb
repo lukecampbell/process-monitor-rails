@@ -7,8 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <a href="#" class="brand">Process Monitor</a>
+      <ul class="nav">
+        <li>
+          <%= link_to 'Workers', system_processes_path %>
+        </li>
+        <li>
+          <%= link_to 'Resque', '/resque' %>
+        </li>
+        <li>
+          <%= link_to 'Processes', list_path %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id='content-pane'>
+    <%= yield %>
+  </div>
 </body>
 </html>
