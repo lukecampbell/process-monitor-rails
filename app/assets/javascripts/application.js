@@ -13,16 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require raphael
-//= require morris
-//= require_tree .
+//= require system_processes
+//= require bootstrap
 //
-$(document).ready( function() {
-  $('.table-hover').find("tr").click( function() {
-      window.location = $(this).attr("url");
-      //console.log(this);
-      //console.log($(this).attr("url"));
-  }).hover( function() {
-      $(this).toggleClass('hover');
-  });
-});

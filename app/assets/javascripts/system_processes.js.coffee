@@ -4,9 +4,8 @@
 #
 #
 jQuery ->
-  Morris.Line
-    element: 'process_chart'
-    data: $('#process_chart').data('stats')
-    xkey: 'created_at'
-    ykeys: ['rss']
-    labels: ['RSS']
+  $(".table-hover").find("tr").click(->
+    window.location = $(this).attr("url")
+  ).hover ->
+    $(this).toggleClass "hover"
+
