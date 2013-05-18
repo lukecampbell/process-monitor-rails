@@ -6,5 +6,28 @@
   }
 }
 
+#content-pane { 
+  margin-left: 60px;
+  width: 800px;
+}
 
+.reset {
+  float: right;
+}
 
+.table-head {
+  float: left;
+}
+
+.command {
+  font-family: "Courier New" Courier monospace;
+}
+
+.spill-cell {
+  height: 600px;
+  overflow: auto;
+}
+
+.graph-title {
+  text-align: center;
+}

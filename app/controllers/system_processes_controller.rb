@@ -25,7 +25,21 @@ class SystemProcessesController < ApplicationController
 
   def show
     @proc = SystemProcess.find(params[:id])
-    @stats = @proc.process_stats
+    respond_to do |format|
+      format.html { @stats = @proc.process_stats.limit(12).reverse_order }
+      format.json do |r|
+        stats = @proc.process_stats.limit(20)
+        render :json => {:data=>stats.as_json}
+      end
+    end
+  end
+
+  def download
+    @proc = SystemProcess.find(params[:id])
+    stats = @proc.process_stats
+    csv_data = "created_at,rss,pmem,pcpu\n"
+    stats.each {|s| csv_data << "#{s.created_at},#{s.rss},#{s.pmem},#{s.pcpu}\n" }
+    send_data csv_data, :filename => "#{@proc.id}.csv", :type => "text/csv"
   end
 
   def create

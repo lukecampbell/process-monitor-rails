@@ -1,0 +1,11 @@
+# For rendering morris
+jQuery ->
+
+  $.getJSON(document.location, (data) ->
+    Morris.Line
+      element: 'process_chart'
+      data: data["data"]
+      xkey: 'created_at'
+      ykeys: [$('#process_chart').attr('label')]
+      labels: ['Value']
+  )
