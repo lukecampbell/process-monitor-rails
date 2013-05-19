@@ -1,0 +1,17 @@
+<div class="graph-title">
+  <h1>
+    <% if not params[:label] %>
+      RSS
+    <% elsif params[:label] == 'rss' %>
+      RSS
+    <% elsif params[:label] == 'pcpu' %>
+      %CPU
+    <% elsif params[:label] == 'pmem' %>
+      %MEM
+    <% end %>
+  </h1>
+</div>
+<%= content_tag :div, "", id: 'process_chart', label: params[:label] || "rss" %>
+<%= link_to 'RSS', params.update({label: 'rss'}), class: 'btn graph-switch' %>
+<%= link_to '%CPU', params.update({label: 'pcpu'}), class: 'btn graph-switch' %>
+<%= link_to '%MEM',params.update({label: 'pmem'}), class: 'btn graph-switch' %>
