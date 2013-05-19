@@ -5,58 +5,11 @@
 <% end %>
 <div class="row-fluid">
   <div class="span6">
-    <div class="graph-title">
-      <h1>
-        <% if not params[:label] %>
-          RSS
-        <% elsif params[:label] == 'rss' %>
-          RSS
-        <% elsif params[:label] == 'pcpu' %>
-          %CPU
-        <% elsif params[:label] == 'pmem' %>
-          %MEM
-        <% end %>
-      </h1>
-    </div>
-    <%= content_tag :div, "", id: 'process_chart', label: params[:label] || "rss" %>
-    <%= link_to 'RSS', params.update({label: 'rss'}), class: 'btn graph-switch' %>
-    <%= link_to '%CPU', params.update({label: 'pcpu'}), class: 'btn graph-switch' %>
-    <%= link_to '%MEM',params.update({label: 'pmem'}), class: 'btn graph-switch' %>
+    <%= render 'graph' %>
   </div>
   <div class="span6">
     <div class="spill-cell">
-      <div class="table-head">
-        <h1>System Process <%= @proc.id %></h1>
-        <div class='command'>
-          <%= @proc.command %>
-        </div>
-      </div>
-      <div class='reset'>
-        <%= link_to 'Reset', @proc, :method=>:delete, :class=>:btn %>
-        <%= link_to 'Download', download_path(@proc.id), :class=>:btn %>
-      </div>
-      <% if @stats and @stats.length %>
-      <table cellspacing="0" class="table table-striped">
-        <thead>
-          <th>Time</th>
-          <th>RSS</th>
-          <th>%Mem</th>
-          <th>%CPU</th>
-        </thead>
-        <tbody>
-          <% @stats.each do |s| %>
-            <tr>
-              <td><%= s.created_at %></td>
-              <td><%= s.rss %></td>
-              <td><%= s.pmem %></td>
-              <td><%= s.pcpu %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <% else %>
-        <h3> No Stats Available at this time </h3>
-      <% end %>
+      <%= render 'stat_table' %>
     </div>
   </div>
 </div>
