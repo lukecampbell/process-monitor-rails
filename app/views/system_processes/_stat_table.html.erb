@@ -11,7 +11,7 @@
 </div>
 
 <% if @stats and @stats.length %>
-  <table cellspacing="0" class="table table-striped">
+  <table cellspacing="0" id='stat_table' class="table table-striped">
     <thead>
       <th>Time</th>
       <th>RSS</th>
@@ -19,14 +19,6 @@
       <th>%CPU</th>
     </thead>
     <tbody>
-      <% @stats.each do |s| %>
-        <tr>
-          <td><%= s.created_at %></td>
-          <td><%= s.rss %></td>
-          <td><%= s.pmem %></td>
-          <td><%= s.pcpu %></td>
-        </tr>
-      <% end %>
     </tbody>
   </table>
 <% else %>
