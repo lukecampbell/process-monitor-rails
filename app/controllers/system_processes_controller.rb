@@ -28,7 +28,13 @@ class SystemProcessesController < ApplicationController
     respond_to do |format|
       format.html { @stats = @proc.process_stats.limit(12).reverse_order }
       format.json do |r|
-        stats = @proc.process_stats.limit(20)
+        limit = params[:n]
+        if limit
+          limit = limit.to_i
+        else
+          limit = 20
+        end
+        stats = @proc.process_stats.limit(limit).reverse_order
         render :json => {:data=>stats.as_json}
       end
     end
