@@ -25,6 +25,9 @@ class MonitorWorker
       return false
     end
     rss, pmem, pcpu = `ps -ww -p #{process_id} -o rss=,pmem=,pcpu=`.strip.split
+    if $?.exitstatus == 1
+      return false
+    end
     proc_stat = ProcessStat.new
     proc_stat.rss = rss.to_f
     proc_stat.pmem = pmem.to_f
