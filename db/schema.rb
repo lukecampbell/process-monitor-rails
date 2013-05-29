@@ -13,22 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130516020051) do
 
-  create_table "account", :id => false, :force => true do |t|
-    t.integer "id",                     :null => false
-    t.string  "owner",   :limit => 128
-    t.float   "balance"
-  end
-
-  create_table "acid", :force => true do |t|
-    t.integer "val"
-  end
-
-  create_table "avatar", :id => false, :force => true do |t|
-    t.integer "id",                   :null => false
-    t.string  "name",  :limit => 128
-    t.string  "power", :limit => 32
-  end
-
   create_table "process_stats", :force => true do |t|
     t.integer  "system_process_id"
     t.float    "rss"
@@ -49,22 +33,6 @@ ActiveRecord::Schema.define(:version => 20130516020051) do
     t.datetime "updated_at",  :null => false
     t.integer  "time_length"
     t.integer  "interval"
-  end
-
-  create_table "tasks", :force => true do |t|
-    t.string "priority", :limit => 8
-    t.string "loe",      :limit => 24
-    t.text   "task"
-    t.text   "notes"
-    t.string "asignee",  :limit => 24
-    t.string "progress", :limit => 32
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
 end
