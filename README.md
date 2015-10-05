@@ -48,7 +48,8 @@ rvm use 1.9.3@process-monitor
 ```
 7. `bundle install`
 8. Setup your database `cp config/database.example.yml config/database.yml` and setup your adaptors.  You need a standalone database like PostgreSQL or MySQL to support multiple workers.
-9. Launch the workers (to monitor) `foreman start -c worker=10`
-10. Launch rails `rails s`
+9. Install the tables with `rake db:setup`
+10. Launch the workers (to monitor) `foreman start -c worker=10`
+11. Launch rails `rails s`
 
 
